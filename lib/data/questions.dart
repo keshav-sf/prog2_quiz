@@ -8,18 +8,26 @@ const questions = [
   QuizQuestion(
     'Dart is an?',
     [
+      'All of the above',
       'open-source',
       'general-purpose',
-      'programming language',
-      'All of the above'
+      'programming language'
     ],
   ),
   QuizQuestion(
     'Dart is originally developed by?',
-    ['Microsoft', 'Google', 'IBM', 'Facebook'],
+    ['Google', 'Microsoft', 'IBM', 'Facebook'],
   ),
   QuizQuestion(
     'The _______ function is a predefined method in Dart.',
-    ['declare()', 'list()', 'main()', 'return()'],
+    ['main()', 'declare()', 'list()', 'return()'],
+  ),
+  QuizQuestion(
+    'Dart is an Object-Oriented language.',
+    ['Yes', 'No', 'Can be yes or no', 'Can not say'],
+  ),
+  QuizQuestion(
+    'An ________ is a real-time representation of any entity.',
+    ['object', 'class', 'method', 'None of the above'],
   ),
 ];
