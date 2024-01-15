@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prog2_quiz/questionscreen.dart';
 import 'package:prog2_quiz/starting_screen.dart';
+import 'package:prog2_quiz/data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -12,26 +13,26 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget?
-      activeScreen; //used to switch between widget & ? means that activeScreen widget can be null
+  List<String> selectedanswer = [];
 
-  // [This was not used because the declaration & initialization is done exceuting at same time.]
-  // Widget activeScreen = StartingScreen(switchScreen);
+  var activeScreen = 'start_screen';
 
-  @override
-  //initState is used to initialize activeScreen widget
-  void initState() {
-    activeScreen = StartingScreen(switchScreen);
-    super.initState();
-  }
-
-  //Function which will be used to switch between widget on button click
   void switchScreen() {
     setState(
       () {
-        activeScreen = const QuestionScreen();
+        activeScreen = 'question_screen';
       },
     );
+  }
+
+  void addselectedanswer(String answer) {
+    selectedanswer.add(answer);
+    if (selectedanswer.length == questions.length) {
+      setState(() {
+        selectedanswer = [];
+        activeScreen = 'start_screen';
+      });
+    }
   }
 
   @override
@@ -49,7 +50,9 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
+          child: activeScreen == 'start_screen'
+              ? StartingScreen(switchScreen)
+              : QuestionScreen(onAnswerSelected: addselectedanswer),
         ),
       ),
     );
